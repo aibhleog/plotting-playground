@@ -13,6 +13,6 @@ I try to be thorough in my commenting, but I also try not to overdo it!  If anyt
 Hopefully you find these figures fun!  I would love to inspire others to push the limits of their plotting knowledge and strive to make amazing and _understandable and appealing_ figures.  Sadly, so often people don't care about presentation when it comes to sharing their results -- they lose so much of their audience this way. 
 ### Be the data vis change you want to see in the world!
 
-#### Happy plotting!
-#### Taylor Hutchison
-#### aibhleog@tamu.edu
+*Happy plotting!*  
+Taylor Hutchison  
+aibhleog@tamu.edu
