@@ -1,5 +1,5 @@
 ## Animated Dither Patterns for MOSFIRE
-This code makes a series of images and creates a small animation showing the dither patterns of MOSFIRE, and pointing out the safe regions to place targets in the slits. Note that this is only showing the ABAB dither pattern.
+This code makes a series of images and creates a small animation showing the dither patterns of MOSFIRE, and pointing out the safe regions to place targets in the slits. **Note that this is only showing the ABAB dither pattern.**
 
 In this plotting example, I make a series of images instead of using the `matplotlib.animation` package. My philosophy is that sometimes being more "pythonic" can make your life harder -- in this example, where I want to change things for each frame, it makes *much* more sense to make a series of images and combine them later into an animation. Also (another reason), it's good to know how to do a task in a few different ways!
 
