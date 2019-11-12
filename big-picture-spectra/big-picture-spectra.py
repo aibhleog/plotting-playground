@@ -189,7 +189,7 @@ ax12.set_xlabel('observed wavelength [microns]',fontsize=16)
 f.add_subplot(ax12) # adds subplot to the figure
 
 # saving figure
-plt.savefig('figure.png')
+plt.savefig('figure.pdf')
 #plt.show()
 plt.close('all')
 
