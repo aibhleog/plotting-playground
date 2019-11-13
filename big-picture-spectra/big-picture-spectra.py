@@ -112,39 +112,39 @@ f.add_subplot(ax02) # adds the subplot to the image
 
 
 # --> LEFT SIDE: F160W STAMP
-gs011 = gridspec.GridSpecFromSubplotSpec(1,1,subplot_spec=gs01[0])
-ax011 = plt.Subplot(f, gs011[0]) # no need to add extra tiny subplots for padding here!
-ax011.imshow(galaxy,aspect='auto',origin='upper',cmap='gray',clim=(-1,2))
+gs002 = gridspec.GridSpecFromSubplotSpec(1,1,subplot_spec=gs01[0])
+ax002 = plt.Subplot(f, gs002[0]) # no need to add extra tiny subplots for padding here!
+ax002.imshow(galaxy,aspect='auto',origin='upper',cmap='gray',clim=(-1,2))
 
 # removing the tickmarks and labels for the 2D spectrum
-ax011.xaxis.set_ticks_position('none')
-ax011.yaxis.set_ticks_position('none')
-ax011.set_yticklabels([])
-ax011.set_xticklabels([])
+ax002.xaxis.set_ticks_position('none')
+ax002.yaxis.set_ticks_position('none')
+ax002.set_yticklabels([])
+ax002.set_xticklabels([])
 
 # white text with black outline
-txt = ax011.text(0.03,0.90,'F160W',ha='left',size=22.5, color='w',transform=ax011.transAxes)
+txt = ax002.text(0.03,0.90,'F160W',ha='left',size=22.5, color='w',transform=ax002.transAxes)
 txt.set_path_effects([PathEffects.withStroke(linewidth=3, foreground='k')])
 
 # adding years for the slit layouts, using the set_path_effects to "bold" the text
-txt = ax011.text(0.04,0.13,'2016',size=16+3.5, color='#CF6060',transform=ax011.transAxes)
+txt = ax002.text(0.04,0.13,'2016',size=19.5, color='#CF6060',transform=ax002.transAxes)
 txt.set_path_effects([PathEffects.withStroke(linewidth=1.18, foreground='#CF6060')])
-txt = ax011.text(0.04,0.22,'2014',size=16+3.5, color='#F4D03F',transform=ax011.transAxes)
+txt = ax002.text(0.04,0.22,'2014',size=19.5, color='#F4D03F',transform=ax002.transAxes)
 txt.set_path_effects([PathEffects.withStroke(linewidth=1.18, foreground='#F4D03F')])
-txt = ax011.text(0.04,0.04,'2017',size=16+3.5, color='#70B5E3',transform=ax011.transAxes)
+txt = ax002.text(0.04,0.04,'2017',size=19.5, color='#70B5E3',transform=ax002.transAxes)
 txt.set_path_effects([PathEffects.withStroke(linewidth=1.18, foreground='#70B5E3')])
 
 
 # plotting slits over the regions in the image
                         # loc: 2,    3,          4,        1
-ax011.add_patch(Polygon([[7,7],[22,45],[25.5,43],[11,5]], # 2016 slit
+ax002.add_patch(Polygon([[7,7],[22,45],[25.5,43],[11,5]], # 2016 slit
 						zorder=3,facecolor='none',lw=1.8,edgecolor='#CF6060'))
-ax011.add_patch(Polygon([[15,5],[15,45],[20,45],[20,5]], # 2014 slit
+ax002.add_patch(Polygon([[15,5],[15,45],[20,45],[20,5]], # 2014 slit
 						zorder=3,facecolor='none',lw=1.8,edgecolor='#F4D03F'))
-ax011.add_patch(Polygon([[5,23],[5,28],[28,28],[28,23]], # 2017 slit
+ax002.add_patch(Polygon([[5,23],[5,28],[28,28],[28,23]], # 2017 slit
 						zorder=3,facecolor='none',lw=1.8,edgecolor='#70B5E3'))
 
-f.add_subplot(ax011) # adds the subplot to the figure
+f.add_subplot(ax002) # adds the subplot to the figure
 # ------------------------------------------------------------------------- #
 
 
@@ -157,36 +157,36 @@ line = 'ciii'
 band = 'H'
 
 # similar padding process done as with the Lya spectrum (where only the middle one matters)
-gs2 = gridspec.GridSpecFromSubplotSpec(1,3,subplot_spec=gs0[1],width_ratios=[0.28,2,0.13],wspace=0.0)
+gs02 = gridspec.GridSpecFromSubplotSpec(1,3,subplot_spec=gs0[1],width_ratios=[0.28,2,0.13],wspace=0.0)
 
 # splitting the middle subplot from above into two, so that we can have 2D on top and 1D on bottom
-gs11 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=gs2[1],height_ratios=[1.75,2],hspace=0.0)
+gs003 = gridspec.GridSpecFromSubplotSpec(2,1,subplot_spec=gs02[1],height_ratios=[1.75,2],hspace=0.0)
 
 # 2D spectrum
-ax11 = plt.Subplot(f, gs11[0])
-ax11.imshow(galspec2d_line2[:,15:55].T,aspect='auto',origin='lower',cmap='gray',clim=(-1.5,2.2))
+ax21 = plt.Subplot(f, gs003[0])
+ax21.imshow(galspec2d_line2[:,15:55].T,aspect='auto',origin='lower',cmap='gray',clim=(-1.5,2.2))
 
 # removing the tickmarks and labels for the 2D spectrum
-ax11.xaxis.set_ticks_position('none')
-ax11.yaxis.set_ticks_position('none')
-ax11.set_yticklabels([])
-ax11.set_xticklabels([])
+ax21.xaxis.set_ticks_position('none')
+ax21.yaxis.set_ticks_position('none')
+ax21.set_yticklabels([])
+ax21.set_xticklabels([])
 
 # white text with black outline
-txt = ax11.text(0.02,0.75,'%s-band'%(band), size=16+8.5, color='w',transform=ax11.transAxes)
+txt = ax21.text(0.02,0.75,'%s-band'%(band), size=16+8.5, color='w',transform=ax21.transAxes)
 txt.set_path_effects([PathEffects.withStroke(linewidth=3, foreground='k')])
-f.add_subplot(ax11) # adds subplot to the figure
+f.add_subplot(ax21) # adds subplot to the figure
 
 
 # 1D spectrum
-ax12 = plt.Subplot(f, gs11[1])
-ax12.step(wavelength,galspec1d_line2,where='mid',lw=2.7)
-ax12.fill_between(wavelength,error1d,error1d*-1,alpha=0.2)
+ax22 = plt.Subplot(f, gs003[1])
+ax22.step(wavelength,galspec1d_line2,where='mid',lw=2.7)
+ax22.fill_between(wavelength,error1d,error1d*-1,alpha=0.2)
 
-ax12.set_xlim(wavelength[0],wavelength[-1])
-ax12.set_ylabel(r'F$_{\lambda}$ [10$^{-19}$ erg/s/cm$^{2}$/$\AA$]',fontsize=16)
-ax12.set_xlabel('observed wavelength [microns]',fontsize=16)
-f.add_subplot(ax12) # adds subplot to the figure
+ax22.set_xlim(wavelength[0],wavelength[-1])
+ax22.set_ylabel(r'F$_{\lambda}$ [10$^{-19}$ erg/s/cm$^{2}$/$\AA$]',fontsize=16)
+ax22.set_xlabel('observed wavelength [microns]',fontsize=16)
+f.add_subplot(ax22) # adds subplot to the figure
 
 # saving figure
 plt.savefig('figure.pdf')
