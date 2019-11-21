@@ -2,7 +2,7 @@
 This repository stores fun plots I've made for various presentations and outreach programs that others may find fun or useful!  Each folder represents a different plot -- the information in each folder is outlined as follows:
 
 - A README.md file describing the plotting script
-- The output, labeled "figure.png"
+- The output, labeled "figure.pdf" or "figure.gif"
 - Any supplementary scripts or information needed
 - The `python` plotting script itself
 
