@@ -33,11 +33,6 @@ dic = {'ha':6562.8,'c.iii]':[1906.8,1908.73],'lya':1215.67,\
 
 # ------ reading in filter curves ------ #
 # -------------------------------------- #
-# HST/WFC3 NIR photometric bandpasses	
-hst_f160w = np.loadtxt('hst-candels.f160w.IR.tab',skiprows=5)
-f160w = [hst_f160w[12170:,1],hst_f160w[12170:,2]] # different table format (ugh)
-f105w = np.loadtxt('HST-WFC3_IR.F105W.dat')
-
 # Keck/MOSFIRE NIR spectroscopic bandpasses
 mos_y = np.loadtxt('mosfire_yband_throughput.txt')
 mos_j = np.loadtxt('mosfire_jband_throughput.txt')
