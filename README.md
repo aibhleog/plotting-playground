@@ -6,7 +6,7 @@ This repository stores fun plots I've made for various presentations and outreac
 - Any supplementary scripts or information needed
 - The `python` plotting script itself
 
-I've also added my personal `matplotlibrc` file so that if you download this repository and run one of the scripts, you should see the exact same figures as found in the folders.  
+I've also added my personal `matplotlibrc` file so that if you download this repository and run one of the scripts, you should see the exact same figures as found in the folders. If you like the way they look and want your general plots to have those characteristics, follow the guidelines in the `matplotlibrc` file on where to put a copy of the file on your personal computer.
   
 
 ## Here's what some of these figures look like:
