@@ -1,7 +1,7 @@
 '''
 This script makes a figure showing where redshifted emission lines pop up
-in wavelength space. Under-plotted are the wavelength ranges of Keck/MOSFIRE,
-HST/WFC3, and Spitzer/IRAC bandpasses.
+in wavelength space. Under-plotted are the wavelength ranges of Keck/MOSFIRE 
+and Spitzer/IRAC bandpasses.
 
 Of course you can add more lines, especially ones you're more interested in!
 Note though that there are some minor adjustments done for certain lines,
