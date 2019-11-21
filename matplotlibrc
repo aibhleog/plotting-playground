@@ -4,12 +4,11 @@
 # ---------------------- Texas A&M University
 # ---------------------- aibhleog@tamu.edu // aibhleog.github.io
 #
-# This is a sample matplotlib configuration file - you can find a copy
-# of it on your system in
-# site-packages/matplotlib/mpl-data/matplotlibrc.  If you edit it
-# there, please note that it will be overwritten in your next install.
-# If you want to keep a permanent local copy that will not be
-# overwritten, place it in the following location:
+# This is Taylor's matplotlib configuration file - you can find a copy
+# of it on your system in site-packages/matplotlib/mpl-data/matplotlibrc.  
+# If you edit it there, please note that it will be overwritten in your 
+# next install. If you want to keep a permanent local copy that will not
+# be overwritten, place it in the following location:
 # unix/linux:
 #     $HOME/.config/matplotlib/matplotlibrc or
 #     $XDG_CONFIG_HOME/matplotlib/matplotlibrc (if $XDG_CONFIG_HOME is set)
