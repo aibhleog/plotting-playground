@@ -25,6 +25,11 @@ Credit: 	Taylor Hutchison
 
 _author_ = 'Taylor Hutchison'
 
+# if you want to run this script in your terminal via an alias, edit this variable
+# with the path to this directory -- then you can run the script as a command from
+# any location on your computer and it will work perfectly!
+path = '/home/aibhleog/Documents/scratch-code/plotting-playground/bandpass_zlines/' # include the '/' at the end!
+
 def bandpass_zlines(redshift):
 	import numpy as np
 	import matplotlib.pyplot as plt
@@ -83,22 +88,22 @@ def bandpass_zlines(redshift):
 
 	# ------ reading in filter curves ------ #
 	# HST/WFC3 NIR photometric bandpasses	
-	f105w = np.loadtxt('HST-WFC3_IR.F105W.dat')
-	f160w = np.loadtxt('HST-WFC3_IR.F160W.dat')
+	f105w = np.loadtxt(path+'HST-WFC3_IR.F105W.dat')
+	f160w = np.loadtxt(path+'HST-WFC3_IR.F160W.dat')
 
 	# Keck/MOSFIRE NIR spectroscopic bandpasses
-	mos_y = np.loadtxt('mosfire_yband_throughput.txt')
-	mos_j = np.loadtxt('mosfire_jband_throughput.txt')
-	mos_h = np.loadtxt('mosfire_hband_throughput.txt')
-	mos_k = np.loadtxt('mosfire_kband_throughput.txt')
+	mos_y = np.loadtxt(path+'mosfire_yband_throughput.txt')
+	mos_j = np.loadtxt(path+'mosfire_jband_throughput.txt')
+	mos_h = np.loadtxt(path+'mosfire_hband_throughput.txt')
+	mos_k = np.loadtxt(path+'mosfire_kband_throughput.txt')
 	mos_j[:,0] *= 1e4 # because everything else
 	mos_k[:,0] *= 1e4 # is in Angstroms
 
 	# Spitzer/IRAC IR channels
-	spitzer36 = np.loadtxt('Spitzer_IRAC.I1.dat')
-	spitzer45 = np.loadtxt('Spitzer_IRAC.I2.dat')
-	spitzer58 = np.loadtxt('Spitzer_IRAC.I3.dat')
-	spitzer80 = np.loadtxt('Spitzer_IRAC.I4.dat')
+	spitzer36 = np.loadtxt(path+'Spitzer_IRAC.I1.dat')
+	spitzer45 = np.loadtxt(path+'Spitzer_IRAC.I2.dat')
+	spitzer58 = np.loadtxt(path+'Spitzer_IRAC.I3.dat')
+	spitzer80 = np.loadtxt(path+'Spitzer_IRAC.I4.dat')
 	# ALL FILTER CURVES (except Keck/MOSFIRE) can be found at 
 	# http://svo2.cab.inta-csic.es/svo/theory/fps3/
 
@@ -136,11 +141,11 @@ def bandpass_zlines(redshift):
 		lh.set_alpha(1)
 
 	plt.tight_layout()
-	plt.savefig('figure.pdf')
+	plt.savefig(path+'figure.pdf')
 	plt.close('all')
 
 	# opening image from the terminal
-	os.system('gnome-open figure.pdf')
+	os.system(f'gnome-open {path}figure.pdf')
 
 
 # reads in input for scripted version
