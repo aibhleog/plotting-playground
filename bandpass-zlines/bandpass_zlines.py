@@ -1,6 +1,7 @@
 '''
 This is a script that can be implemented into your .bashrc and used
 to plot a redshifted spectrum and show relevant lines of interest.
+--> NOTE that this outputs a PDF file, but feel free to change to PNG
 
 As Taylor mostly works in the NIR and IR, the bandpasses plotted only
 cover that wavelength space, although this code can easily be adapted
@@ -135,11 +136,11 @@ def bandpass_zlines(redshift):
 		lh.set_alpha(1)
 
 	plt.tight_layout()
-	plt.savefig('figure.png')
+	plt.savefig('figure.pdf')
 	plt.close('all')
 
 	# opening image from the terminal
-	os.system('gnome-open figure.png')
+	os.system('gnome-open figure.pdf')
 
 
 # reads in input for scripted version
