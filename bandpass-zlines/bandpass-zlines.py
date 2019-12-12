@@ -28,7 +28,7 @@ _author_ = 'Taylor Hutchison'
 # if you want to run this script in your terminal via an alias, edit this variable
 # with the path to this directory -- then you can run the script as a command from
 # any location on your computer and it will work perfectly!
-path = '/home/aibhleog/Documents/scratch-code/plotting-playground/bandpass_zlines/' # include the '/' at the end!
+path = '/path/to/file/' # include the '/' at the end!
 
 def bandpass_zlines(redshift):
 	import numpy as np
