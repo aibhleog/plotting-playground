@@ -1,5 +1,5 @@
 ## Redshifted Spectrum with Bandpasses & Emission Lines
-This code take a model galaxy spectrum and redshifts based upon user input.  At the same time, the attenuation of the far ultravoilet (far-UV) is applied at higher redshifts.  Under-plotted are some _Keck_/MOSFIRE, _HST_/WFC3, and _Spitzer_/IRAC bandpasses.  
+This script takes a model galaxy spectrum and redshifts based upon user input.  At the same time, the attenuation of the far ultravoilet (far-UV) is applied at higher redshifts.  Under-plotted are some _Keck_/MOSFIRE, _HST_/WFC3, and _Spitzer_/IRAC bandpasses.  
 
 The bandpasses could be changed to whatever you want! As I mostly work in the NIR and IR, the bandpasses plotted only cover that wavelength space, although this code can easily be adapted to fit your needs.
 
