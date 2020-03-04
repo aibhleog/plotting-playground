@@ -51,6 +51,8 @@ def bandpass_zlines(redshift):
 				'[NeIII] $\lambda$3869','H$\delta$','H$\gamma$']
 		font = 15
 		for i in range(len(lines)):
+			# the following looks a little messy, but it's just the fine-tuning
+			# I did to make the line names show up nicely
 			if i == 1: shift = 50; y = yo
 			elif i == 2: shift = 30	; y = yo-yo*0.7
 			elif i == 3: shift = -180; y = yo+yo*1.4
@@ -74,7 +76,7 @@ def bandpass_zlines(redshift):
 	# Z(stellar)=Z(nebular)=0.2 Zsolar, ionization parameter log_10(U)=-2.1, n_H=300 cm^(-3)	
 	z,zneb,u = 0.2,0.2,-2.1
 	model = 'age7z%szneb%su%s_100.con'%(z,zneb,u)
-	data = '/home/aibhleog/Desktop/catalogs/cloudy/models/steidel/single_cont_100/'
+	data = '' # if you place it somewhere else, you can put the path here
 	con = np.loadtxt(data+model,usecols=[0,6])
 	wave,vfv = con[:,0],con[:,1]
 	#print(wave[0]*1e4,wave[-1]*1e4)
