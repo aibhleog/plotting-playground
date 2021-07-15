@@ -39,37 +39,39 @@ def bandpass_zlines(redshift):
 
 	def lines(ax,yo,z,text='yes'):
 		# plotting relevant lines -- feel free to add more!
-		lines = [1215.67,1240,1640.4,1883,1906.8,2798,3727,4862.68,\
-					4959,5007.0,1548.48,4686,5876,3869,4102,4341]
-		lnames = [r'Ly$\alpha$','NV $\lambda$1240','HeII $\lambda$1640',\
-				'SiIII] $\lambda$1883\n  & $\lambda$1892',\
-				'CIII] $\lambda$1907\n  & $\lambda$1909',\
-				'MgII $\lambda$2796\n  & $\lambda$2803',\
-				'[OII] $\lambda$3727\n    & $\lambda$3729',\
-				r'H$\beta$ $\lambda$4863','','[OIII] $\lambda$4959\n    & $\lambda$5007',\
-				'CIV $\lambda$1549','HeII $\lambda$4686','HeI $\lambda$5876',\
-				'[NeIII] $\lambda$3869','H$\delta$','H$\gamma$']
-		font = 15
-		for i in range(len(lines)):
-			# the following looks a little messy, but it's just the fine-tuning
-			# I did to make the line names show up nicely
-			if i == 1: shift = 50; y = yo
-			elif i == 2: shift = 30	; y = yo-yo*0.7
-			elif i == 3: shift = -180; y = yo+yo*1.4
-			elif i == 6: shift = -180
-			elif i == 7: shift = -105; y = yo+yo*0.8
-			elif i == 9: shift = 80; y = yo
-			elif i == 4: shift = 60; y = yo+yo*0.4
-			elif i == 0: shift = -140; y = yo+yo*2.8
-			elif i == len(lines)-6: shift = -100; y = yo
-			elif i == len(lines)-5: shift = -100; y = yo
-			elif i == len(lines)-4: shift = -110; y = yo
-			elif i == len(lines)-3: shift = -80
-			else: shift = 40; y = yo
-			ax.axvline(lines[i]/1e4*(1+z),ls='--',color='k',alpha=.5)
+		lines = {'lya':[1215.67,r'Ly$\alpha$'],'nv':[1240,'NV $\lambda$1240'],
+			'civ':[1548,'CIV $\lambda$1549'],'heii1':[1640.4,'HeII $\lambda$1640'],
+			'oiii]':[1664,'OIII] $\lambda$1660,1666'],
+			'siiii]':[1883,'SiIII] $\lambda$1883,1892'],
+			'ciii]':[1906.8,'CIII] $\lambda$1907\n  & $\lambda$1909'],
+			'mgii':[2798,'MgII $\lambda$2796\n  & $\lambda$2803'],
+			'[oii]':[3727,'[OII] $\lambda$3727\n    & $\lambda$3729'],
+			'[neiii]':[3869,'[NeIII] $\lambda$3869'],'heii2':[4686,'HeII $\lambda$4686'],
+			'hbeta':[4862.68,r'H$\beta$ $\lambda$4863'],'[oiii]1':[4959,''],
+			'[oiii]2':[5007,'[OIII] $\lambda$4959\n    & $\lambda$5007'],
+			'hei':[5876,'HeI $\lambda$5876'],'hdelta':[4102,'H$\delta$'],
+			'hgamma':[4341,'H$\gamma$']}
+		
+		shifts = {'lya':[-140,yo+yo*2.8],'nv':[40,yo],
+			'civ':[-90,yo-yo*0.4],'heii1':[-70,yo+yo*1.4],
+			'oiii]':[25,yo-yo*0.2],'siiii]':[-85,yo-yo*0.5],
+			'ciii]':[50,yo+yo*0.4],'mgii':[40,yo],
+			'[oii]':[-180,yo],'[neiii]':[-80,yo],'heii2':[-100,yo],
+			'hbeta':[-105,yo+yo*0.8],'[oiii]1':[40,yo],
+			'[oiii]2':[70,yo],'hei':[-100,yo],'hdelta':[40,yo],'hgamma':[40,yo]}
+		
+		line_names = list(lines.keys()) # just to get the list of all of the lines
+		for l in line_names: # walking through the lines
+			shift, y = shifts[l] # accessing shifts for line
+			wave,name = lines[l] # accessing line info for line
+		
+			ax.axvline(wave/1e4*(1+z),ls='--',color='k',alpha=.5)
 			if text == 'yes':
-				ax.text((lines[i]+shift)/1e4*(1+z),y,'%s'%(lnames[i]),\
+				if l == 'heii1' or l == 'oiii]': font = 13
+				else: font = 15
+				ax.text((wave+shift)/1e4*(1+z),y,'%s'%(name),\
 					fontsize=font,verticalalignment='bottom',rotation='vertical')
+
 
 	# Cloudy model provided by Taylor Hutchison
 	# Single stellar population from BPASS with age=10Myr & IMF that goes to 100 Msolar, 
@@ -84,7 +86,7 @@ def bandpass_zlines(redshift):
 	sed_0 = vfv / nu
 
 	# plotting the redshifted spectrum
-	plt.figure(figsize=(14.5,5))
+	plt.figure(figsize=(16.5,5))
 	ax = plt.gca()
 	ax = plt.axes(xlim=(0.08*(1+redshift),0.599*(1+redshift)),ylim=(1e-15,3.5e-13))
 
@@ -136,7 +138,7 @@ def bandpass_zlines(redshift):
 	plt.yscale('log')
 	ax.set_yticklabels([])
 	ax.tick_params(labelsize=16)
-	ax.set_xlabel('observed wavelength for $z=\,$%s [microns]'%redshift,fontsize=16)
+	ax.set_xlabel(f'observed wavelength for $z=\,${redshift} [microns]',fontsize=16)
 	leg = ax.legend(frameon=False,loc=9,fontsize=13,ncol=len(filts),\
 		bbox_to_anchor=(0.5,1.12))
 	for lh in leg.legendHandles: 
