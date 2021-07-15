@@ -25,6 +25,7 @@ _author_ = 'Taylor Hutchison'
 
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime as dt # timing how long it takes
 from matplotlib.patches import Circle
 from matplotlib import collections
 import matplotlib.animation as animation
@@ -33,9 +34,14 @@ import matplotlib.gridspec as gridspec
 import igm_absorption as igm # 	another script written by Taylor Hutchison
 			     #	which adds in IGM absorption for the higher redshifts
 
+# adding a timer to this to see how long it takes
+start_it = dt.now()
+print('\nStarting timer', start_it)
+
+
 fig = plt.figure(figsize=(10,6))
 ax = plt.gca()
-ax = plt.axes(xlim=(0.1,2),ylim=(1e-15,2.5e-13))
+ax = plt.axes(xlim=(0.1,2),ylim=(4e-16,1e-13))
 
 # Cloudy model provided by Taylor Hutchison
 # binary stellar population from BPASS with age=10Myr & IMF that goes to 300 Msolar, 
@@ -47,21 +53,32 @@ nu = 2.998e+14 / wave
 sed_0 = vfv / nu
 
 # this is my way of applying a rainbow for the visual band
-cmap = cm.get_cmap('jet')
+cmap = cm.get_cmap('rainbow')
 vcolors = [cmap(i) for i in np.linspace(0,1,300)]
-x = np.linspace(0.4,0.701,num=300)
+x = np.linspace(0.39,0.71,num=300)
 for i in range(len(x)):
 	if i < len(x)-1:
-		ax.axvspan(x[i],x[i]+10,color=vcolors[i],alpha=0.7)
-	else: ax.axvspan(x[i],x[i]+10,color='w')
+		ax.axvspan(x[i],x[i+1],color=vcolors[i])#,alpha=0.75)
 
-# marking the UV and NIR wavelength ranges
-ax.axvspan(0.701,2.5,color='#E29B8C') # NIR
-ax.axvspan(0.1,0.4,color='#A97EAF') # UV
+# marking the UV and NIR wavelength ranges 
+x = np.linspace(0.71,2.5,num=300)
+ax.axvspan(0.71,x[148],color=vcolors[-4]) # NIR
+for i in range(len(x[:50])):
+	scale = i/len(x)
+	ax.axvspan(x[i],x[50],color='#900C3F',alpha=scale) # NIR
+ax.axvspan(x[50],2.5,color='#900C3F')	
+
+x = np.linspace(0.1,0.401,num=70)
+ax.axvspan(x[32],0.4,color=vcolors[3]) # UV
+for i in range(len(x[50:])):
+	scale = (len(x[50:])-i)/(len(x)*1.5)
+	ax.axvspan(x[50],x[50+i],color='#5A1B82',alpha=scale) # UV
+ax.axvspan(0.1,x[50],color='#5A1B82')
+
 
 # labeling all of the wavelength ranges
 ax.text(0.05,0.08,'UV',fontsize=25,transform=ax.transAxes)
-ax.text(0.18,0.08,'Visual',fontsize=25,transform=ax.transAxes)
+ax.text(0.17,0.08,'Visual',fontsize=25,transform=ax.transAxes)
 ax.text(0.44,0.08,'Near-Infrared',fontsize=25,transform=ax.transAxes)
 
 redshift = np.arange(0,10,0.2)
@@ -80,12 +97,15 @@ def init():
 def shift(r):
 	# applies IGM absorption depending upon the redshift
 	sed = sed_0 * igm.igm_absorption(wave*1e4*(1+redshift[r]),redshift[r])
-	line.set_data(wave*(1+redshift[r]),sed)
+	line.set_data(wave*(1+redshift[r]),sed/(1+(redshift[r]*0.3)))
 	tex.set_text('$z$: %s'%(round(redshift[r],3)))
-	if redshift[r] > 6.4:
-		ax.axvspan(0.9,1.5,alpha=0.07)
-	if redshift[r] > 6.4 and redshift[r] < 6.8:
-		ax.text(0.47,0.75,'  Epoch of\nReionization',fontsize=25,transform=ax.transAxes)
+	
+	# if you want the "Epoch of Reionization" to pop up at z>6.4, uncomment below
+	#if redshift[r] > 6.4:
+	#	ax.axvspan(0.9,1.5,alpha=0.07)
+	#if redshift[r] > 6.4 and redshift[r] < 6.8:
+	#	ax.text(0.47,0.75,'  Epoch of\nReionization',fontsize=25,transform=ax.transAxes)
+	
 	return line,tex,
 
 # all the build up lead to this! Running the animation function...
@@ -101,3 +121,6 @@ plt.tight_layout()
 anim.save('figure.gif', fps=10, writer='imagemagick',dpi=150) # this will take a while to make
 #plt.show() # WON'T WORK WITH JUPYTER LAB
 plt.close('all')
+
+
+print(f'That took: {dt.now()-start_it}')
