@@ -88,7 +88,6 @@ def bandpass_zlines(redshift):
 	# plotting the redshifted spectrum
 	plt.figure(figsize=(16.5,5))
 	ax = plt.gca()
-	ax = plt.axes(xlim=(0.08*(1+redshift),0.599*(1+redshift)),ylim=(1e-15,3.5e-13))
 
 	# ------ reading in filter curves ------ #
 	# HST/WFC3 NIR photometric bandpasses	
@@ -135,10 +134,13 @@ def bandpass_zlines(redshift):
 	ax.plot(wave*(1+redshift),sed,color='k',lw=2.)
 	lines(ax,2e-14,redshift) # adding in the line labels
 
-	plt.yscale('log')
+	ax.set_yscale('log')
 	ax.set_yticklabels([])
 	ax.tick_params(labelsize=16)
 	ax.set_xlabel(f'observed wavelength for $z=\,${redshift} [microns]',fontsize=16)
+	ax.set_xlim(0.08*(1+redshift),0.668*(1+redshift))
+	ax.set_ylim(1e-15,3.5e-13)
+	
 	leg = ax.legend(frameon=False,loc=9,fontsize=13,ncol=len(filts),\
 		bbox_to_anchor=(0.5,1.12))
 	for lh in leg.legendHandles: 
