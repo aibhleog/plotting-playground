@@ -10,7 +10,7 @@ I've also added my personal `matplotlibrc` file so that if you download this rep
   
 
 ## Here's what some of these figures look like:
-![visualization of some of the figures](plotting-playground.png)
+![visualization of some of the figures](plotting-playground-reel.gif)
 
 -------------------------
 
@@ -21,4 +21,4 @@ Hopefully you find these figures fun!  I would love to inspire others to push th
 
 *Happy plotting!*  
 Taylor Hutchison  
-aibhleog@tamu.edu
+astro.hutchison@gmail.com
